@@ -11,7 +11,6 @@
 # LICENSED UNDER YES
 # FORKED FROM PMA
 
-DIR="/the/path/of/plugins/folder"
 QUERY=`echo $2 | sed 's/ /+/'g`
 RESULT=`curl -s https://pluginmanagerr.github.io/pma-repo/vizality.json | jq -r  ".pma."$QUERY"_link"`
 if ! [ -x "$(command -v jq)" ]; then
@@ -40,17 +39,17 @@ if ! [ -x "$(command -v curl)" ]; then
     echo "If it didnt work, install  curl manually"
 fi
 
-if ! [ -x "$(command -v git)" ]; then
-    echo "git is not installed, attempting to install it"
-    sudo pacman -S git
-    doas pacman -S git
-    sudo apt install git 
-    doas apt install git 
-    sudo zypper install git
-    doas zypper install git
-    sudo emerge -a git --autounmask
-    doas emerge -a git --autounmask
-    echo "If it didnt work, install  git manually"
+if ! [ -x "$(command -v wget)" ]; then
+    echo "wget is not installed, attempting to install it"
+    sudo pacman -S wget
+    doas pacman -S wget
+    sudo apt install wget 
+    doas apt install wget
+    sudo zypper install wget
+    doas zypper install wget
+    sudo emerge -a wget --autounmask
+    doas emerge -a wget --autounmask
+    echo "If it didnt work, install  wget manually"
 fi
 
 
@@ -90,7 +89,6 @@ while [[ $# -gt 0 ]]; do
             shift
             ;;
           --fetch|-f)
-           cd $DIR
            wget -O LICENSE $RESULT 
             shift
             shift
