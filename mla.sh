@@ -12,7 +12,7 @@
 # FORKED FROM PMA
 
 QUERY=`echo $2 | sed 's/ /+/'g`
-RESULT=`curl -s https://pluginmanagerr.github.io/pma-repo/vizality.json | jq -r  ".pma."$QUERY"_link"`
+RESULT=`curl -s https://memelicensesarchive.github.io/mlacli-repo/mla.json | jq -r  ".mla."$QUERY"_link"`
 if ! [ -x "$(command -v jq)" ]; then
     echo "jq is not installed, attempting to install it"
     sudo pacman -S jq
