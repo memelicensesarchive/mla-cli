@@ -12,7 +12,7 @@ You can check the available commands using the `mla -h` command.
 You need to run `mla -h` to see the commands and use it.
 
 ## Can I use this on Windows?
-You can use this under wsl, if you point the dir of ur project folder through /mnt/c/.
+You can use this under wsl, if cd to the dir of ur project folder through /mnt/c/.
 Still not supported though as i dont run a windows machine.
 
 ## Im getting jq/wget/curl command not found errors, how can I fix them?
