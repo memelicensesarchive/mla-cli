@@ -1,20 +1,19 @@
 #!/usr/bin/env bash
-# ________  _____ ______   ________     
-#|\   __  \|\   _ \  _   \|\   __  \    
-#\ \  \|\  \ \  \\\__\ \  \ \  \|\  \   
-# \ \   ____\ \  \\|__| \  \ \   __  \  
-#  \ \  \___|\ \  \    \ \  \ \  \ \  \ 
-#   \ \__\    \ \__\    \ \__\ \__\ \__\
-#    \|__|     \|__|     \|__|\|__|\|__|
-# Plugin MAnager
-# v2
-# LICENSED UNDER MIT
+# _____ ______   ___       ________     
+#|\   _ \  _   \|\  \     |\   __  \    
+#\ \  \\\__\ \  \ \  \    \ \  \|\  \   
+# \ \  \\|__| \  \ \  \    \ \   __  \  
+#  \ \  \    \ \  \ \  \____\ \  \ \  \ 
+#   \ \__\    \ \__\ \_______\ \__\ \__\
+#    \|__|     \|__|\|_______|\|__|\|__|
+# MemeLicensesArchive-CLI
+# v1
+# LICENSED UNDER YES
+# FORKED FROM PMA
 
 DIR="/the/path/of/plugins/folder"
-THEMEDIR="/the/path/to/theme/folder"
 QUERY=`echo $2 | sed 's/ /+/'g`
 RESULT=`curl -s https://pluginmanagerr.github.io/pma-repo/vizality.json | jq -r  ".pma."$QUERY"_link"`
-THEMERESULT=`curl -s https://pluginmanagerr.github.io/pma-repo/vizality.json | jq -r  ".pma."$QUERY"_themelink"`
 if ! [ -x "$(command -v jq)" ]; then
     echo "jq is not installed, attempting to install it"
     sudo pacman -S jq
@@ -59,12 +58,11 @@ _print_help(){
   cat << "EOF"
 Usage:  pma [OPTIONS]
 Options:
-    -t  --theme       Install a theme
-    -i  --info        Info of a plugins, themes, and descriptions of those
-    -l  --list        List of plugins
+    -i  --info        Info of a license, and descriptions of those
+    -l  --list        List of licenses
     -h  --help        Show help
     -v  --version     Show version
-    -p  --plugin      Install a plugin
+    -f  --fetch       Fetch a license
 EOF
 }
 
@@ -72,39 +70,33 @@ POSITIONAL=()
 while [[ $# -gt 0 ]]; do
     case $1 in
          --list|-l)
-          curl -s https://pluginmanagerr.github.io/pma-repo/vizality.json | jq -r  ".pma"
+          curl -s https://memelicensesarchive.github.io/mlacli-repo/mla.json | jq -r  ".mla"
             shift
             shift
             ;;
            --version|-v)
            echo '
- ________  _____ ______   ________     
-|\   __  \|\   _ \  _   \|\   __  \    
-\ \  \|\  \ \  \\\__\ \  \ \  \|\  \   
- \ \   ____\ \  \\|__| \  \ \   __  \  
-  \ \  \___|\ \  \    \ \  \ \  \ \  \ 
-   \ \__\    \ \__\    \ \__\ \__\ \__\
-    \|__|     \|__|     \|__|\|__|\|__|'              
-            echo "v2"
-            echo "pma is open source, you can check the repos here:"
-            echo "https://github.com/pluginmanagerr/pma"
-            echo "https://github.com/pluginmanagerr/pma-repo"
+  _____ ______   ___       ________     
+|\   _ \  _   \|\  \     |\   __  \    
+\ \  \\\__\ \  \ \  \    \ \  \|\  \   
+ \ \  \\|__| \  \ \  \    \ \   __  \  
+  \ \  \    \ \  \ \  \____\ \  \ \  \ 
+   \ \__\    \ \__\ \_______\ \__\ \__\
+    \|__|     \|__|\|_______|\|__|\|__|'              
+            echo "v1"
+            echo "mla-cli is open source, you can check the repos here:"
+            echo "https://github.com/memelicensesarchive/mla-cli"
+            echo "https://github.com/memelicensesarchive/mlacli-repo"
             shift
             ;;
-          --plugin|-p)
+          --fetch|-f)
            cd $DIR
-           git clone --progress --quiet $RESULT 
-            shift
-            shift
-            ;;
-        --theme|-t)
-           cd $THEMEDIR
-           git clone --progress --quiet $THEMERESULT 
+           wget -O LICENSE $RESULT 
             shift
             shift
             ;;
           --info|-i)
-           curl -s https://pluginmanagerr.github.io/pma-repo/vizality.json | jq -r --arg QUERY "$QUERY"  ".pma.$QUERY"
+           curl -s https://memelicensesarchive.github.io/mlacli-repo/mla.json | jq -r --arg QUERY "$QUERY"  ".mla.$QUERY"
             shift
             shift
             ;;
