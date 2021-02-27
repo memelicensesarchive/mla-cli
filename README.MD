@@ -3,8 +3,7 @@ A CLI for MemeLicensesArchive.
 
 ## How do I use this?
 1. Clone the repo
-2. Edit the THEMEDIR and DIR using your favorite text editor (Vi, Nano, etc.)
-3. Run `make install` as root.
+2. Run `make install` as root.
 
 ## What are the commands?
 You can check the available commands using the `mla -h` command.
