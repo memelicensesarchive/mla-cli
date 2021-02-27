@@ -55,9 +55,9 @@ fi
 
 _print_help(){
   cat << "EOF"
-Usage:  pma [OPTIONS]
+Usage:  mla [OPTIONS]
 Options:
-    -i  --info        Info of a license, and descriptions of those
+    -i  --info        Info of a license, and descriptions of that
     -l  --list        List of licenses
     -h  --help        Show help
     -v  --version     Show version
